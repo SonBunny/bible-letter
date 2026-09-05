@@ -1,5 +1,5 @@
 /* ========================================
-   GLOBAL CREATE PAGE BOX SIZING
+   GLOBAL BOX SIZING
 ======================================== */
 
 .create-letter-page,
@@ -36,13 +36,14 @@
 }
 
 
-/* Subtle paper texture */
+/* ========================================
+   PAPER TEXTURE
+======================================== */
 
 .create-letter-page::before {
   content: "";
 
   position: absolute;
-
   inset: 0;
 
   pointer-events: none;
@@ -137,6 +138,7 @@
   z-index: 2;
 
   display: flex;
+
   align-items: center;
   justify-content: center;
 
@@ -144,163 +146,124 @@
     70px
     20px
     100px;
+
+  overflow: hidden;
+
+  perspective: 1200px;
 }
 
 
 /* ========================================
-   LETTER PAPER
+   STEP TRANSITION WRAPPER
 ======================================== */
 
-.letter-form-section {
-  width: min(760px, 90vw);
-
-  height:
-    min(
-      560px,
-      calc(100vh - 170px)
-    );
-
-  position: relative;
-
-  flex-shrink: 0;
-
-  padding:
-    60px
-    70px;
-
+.create-step-transition {
   display: flex;
-  flex-direction: column;
+
+  align-items: center;
   justify-content: center;
 
-  border-radius: 10px;
+  width: 100%;
 
-  background:
-    linear-gradient(
-      180deg,
-      #fffef9,
-      #fff8ea
-    );
+  transform-origin:
+    center center;
 
-  box-shadow:
-    0 25px 60px
-    rgba(77, 55, 35, 0.16);
+  will-change:
+    transform,
+    opacity;
+}
 
-  transform:
-    rotate(-0.4deg);
 
-  overflow: hidden;
+/* ========================================
+   NEXT — NEW CARD ENTERS
 
+   Comes from the right with a slight
+   physical-paper rotation.
+======================================== */
+
+.create-step-forward {
   animation:
-    createStepEnter
-    0.45s
-    ease
+    createStepForward
+    0.6s
+    cubic-bezier(0.22, 1, 0.36, 1)
     both;
 }
 
 
-/* Inner stationery border */
+@keyframes createStepForward {
 
-.letter-form-section::before {
-  content: "";
+  from {
+    opacity: 0;
 
-  position: absolute;
+    transform:
+      translateX(110px)
+      translateY(20px)
+      rotate(4deg)
+      scale(0.94);
+  }
 
-  inset: 12px;
 
-  border:
-    1px solid
-    rgba(130, 100, 70, 0.14);
+  60% {
+    opacity: 1;
+  }
 
-  border-radius: 7px;
 
-  pointer-events: none;
+  to {
+    opacity: 1;
+
+    transform:
+      translateX(0)
+      translateY(0)
+      rotate(0deg)
+      scale(1);
+  }
+
 }
 
 
 /* ========================================
-   SECTION HEADING
+   BACK — PREVIOUS CARD ENTERS
+
+   Opposite direction.
 ======================================== */
 
-.letter-form-section-heading {
-  display: flex;
-  align-items: flex-start;
-
-  gap: 20px;
-
-  margin-bottom: 34px;
-
-  position: relative;
-
-  z-index: 2;
+.create-step-backward {
+  animation:
+    createStepBackward
+    0.6s
+    cubic-bezier(0.22, 1, 0.36, 1)
+    both;
 }
 
 
-.letter-form-section-number {
-  width: 40px;
-  height: 40px;
+@keyframes createStepBackward {
 
-  flex-shrink: 0;
+  from {
+    opacity: 0;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 50%;
-
-  color: #fffaf0;
-
-  background: #40513a;
-
-  font-family:
-    Arial,
-    sans-serif;
-
-  font-size: 0.75rem;
-}
+    transform:
+      translateX(-110px)
+      translateY(20px)
+      rotate(-4deg)
+      scale(0.94);
+  }
 
 
-.letter-form-section-heading h2 {
-  margin:
-    0
-    0
-    8px;
-
-  color: #40513a;
-
-  font-size:
-    clamp(
-      2rem,
-      4vw,
-      3rem
-    );
-
-  font-weight: 500;
-}
+  60% {
+    opacity: 1;
+  }
 
 
-.letter-form-section-heading p {
-  max-width: 520px;
+  to {
+    opacity: 1;
 
-  margin: 0;
+    transform:
+      translateX(0)
+      translateY(0)
+      rotate(0deg)
+      scale(1);
+  }
 
-  color: #78695a;
-
-  font-size: 0.95rem;
-
-  line-height: 1.6;
-}
-
-
-/* ========================================
-   SECTION CONTENT
-======================================== */
-
-.letter-form-section-content {
-  width: 100%;
-
-  position: relative;
-
-  z-index: 2;
 }
 
 
@@ -368,7 +331,8 @@
 
 
 .form-field input:focus {
-  border-bottom-color: #40513a;
+  border-bottom-color:
+    #40513a;
 
   background:
     rgba(64, 81, 58, 0.03);
@@ -407,6 +371,7 @@
 
 .text-area-field textarea {
   width: 100%;
+
   min-height: 170px;
 
   resize: none;
@@ -471,6 +436,7 @@
     translateX(-50%);
 
   display: flex;
+
   align-items: center;
 
   gap: 12px;
@@ -487,6 +453,7 @@
     20px;
 
   border: none;
+
   border-radius: 999px;
 
   color: #fffaf0;
@@ -571,48 +538,6 @@
 
 
 /* ========================================
-   STEP ENTER ANIMATION
-======================================== */
-
-@keyframes createStepEnter {
-  from {
-    opacity: 0;
-
-    transform:
-      translateY(18px)
-      scale(0.98)
-      rotate(-0.4deg);
-  }
-
-  to {
-    opacity: 1;
-
-    transform:
-      translateY(0)
-      scale(1)
-      rotate(-0.4deg);
-  }
-}
-
-
-/* ========================================
-   TABLET
-======================================== */
-
-@media (max-width: 900px) {
-
-  .letter-form-section {
-    width: min(760px, 90vw);
-
-    padding:
-      50px
-      45px;
-  }
-
-}
-
-
-/* ========================================
    MOBILE
 ======================================== */
 
@@ -626,40 +551,65 @@
   }
 
 
-  .letter-form-section {
-    width: 94vw;
-
-    height:
-      calc(100vh - 145px);
-
-    padding:
-      38px
-      24px;
-
-    transform: none;
+  .create-step-forward {
+    animation-duration: 0.5s;
   }
 
 
-  .letter-form-section-heading {
-    gap: 14px;
-
-    margin-bottom: 28px;
+  .create-step-backward {
+    animation-duration: 0.5s;
   }
 
 
-  .letter-form-section-number {
-    width: 34px;
-    height: 34px;
+  @keyframes createStepForward {
+
+    from {
+      opacity: 0;
+
+      transform:
+        translateX(60px)
+        translateY(15px)
+        rotate(3deg)
+        scale(0.96);
+    }
+
+
+    to {
+      opacity: 1;
+
+      transform:
+        translateX(0)
+        translateY(0)
+        rotate(0deg)
+        scale(1);
+    }
+
   }
 
 
-  .letter-form-section-heading h2 {
-    font-size: 1.8rem;
-  }
+  @keyframes createStepBackward {
+
+    from {
+      opacity: 0;
+
+      transform:
+        translateX(-60px)
+        translateY(15px)
+        rotate(-3deg)
+        scale(0.96);
+    }
 
 
-  .letter-form-section-heading p {
-    font-size: 0.9rem;
+    to {
+      opacity: 1;
+
+      transform:
+        translateX(0)
+        translateY(0)
+        rotate(0deg)
+        scale(1);
+    }
+
   }
 
 
@@ -699,7 +649,8 @@
 
 @media (prefers-reduced-motion: reduce) {
 
-  .letter-form-section {
+  .create-step-forward,
+  .create-step-backward {
     animation: none;
   }
 

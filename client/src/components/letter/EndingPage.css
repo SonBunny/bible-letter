@@ -1,32 +1,503 @@
+/* ========================================
+   ENDING CARD
+======================================== */
+
 .ending-page {
-  min-height: 100vh;
-  background-color: lightgray;
-  overflow-y: auto;
+  position: relative;
+
+  width: min(760px, 82vw);
+  height: min(620px, calc(100vh - 165px));
 
   display: flex;
   flex-direction: column;
+
   align-items: center;
   justify-content: center;
 
+  padding:
+    60px
+    65px;
+
   text-align: center;
-  padding: 40px 24px;
+
+  border-radius: 14px;
+
+  color: #f7f1df;
+
+  background:
+    linear-gradient(
+      145deg,
+      #4d604c,
+      #344735
+    );
+
+  box-shadow:
+    0 25px 60px
+    rgba(35, 45, 34, 0.28);
+
+  transform:
+    rotate(1deg);
+
+  overflow: hidden;
 }
+
+
+/* ========================================
+   INNER BORDER
+======================================== */
+
+.ending-page::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 12px;
+
+  border:
+    1px solid
+    rgba(244, 229, 190, 0.25);
+
+  border-radius: 9px;
+
+  pointer-events: none;
+
+  z-index: 1;
+}
+
+
+/* ========================================
+   SUBTLE CARD TEXTURE
+======================================== */
+
+.ending-page::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  opacity: 0.08;
+
+  pointer-events: none;
+
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 8px,
+      rgba(255, 255, 255, 0.03) 9px
+    );
+
+  z-index: 0;
+}
+
+
+/* ========================================
+   DECORATION
+======================================== */
+
+.ending-decoration {
+  position: relative;
+
+  z-index: 2;
+
+  margin-bottom: 20px;
+
+  color: #d9ba77;
+
+  font-size: 1.35rem;
+
+  line-height: 1;
+}
+
+
+/* ========================================
+   TITLE
+======================================== */
 
 .ending-page h2 {
-  font-size: 2rem;
-  margin-bottom: 16px;
+  position: relative;
+
+  z-index: 2;
+
+  margin:
+    0
+    0
+    22px;
+
+  color: #f7f1df;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size:
+    clamp(
+      2rem,
+      4vw,
+      3rem
+    );
+
+  font-weight: 500;
 }
+
+
+/* ========================================
+   MESSAGE
+======================================== */
 
 .ending-page p {
-  font-size: 1.1rem;
+  position: relative;
+
+  z-index: 2;
+
+  width: 100%;
+  max-width: 560px;
+
+  margin: 0;
+
+  color:
+    rgba(247, 241, 223, 0.82);
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size:
+    clamp(
+      0.95rem,
+      1.4vw,
+      1.15rem
+    );
+
+  line-height: 1.7;
+
+  overflow-wrap: break-word;
 }
 
-@media (max-width: 600px) {
+
+/* ========================================
+   ENDING ACTIONS
+======================================== */
+
+.ending-actions {
+  position: relative;
+
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 14px;
+
+  margin-top: 38px;
+}
+
+
+/* ========================================
+   SHARED BUTTON STYLE
+======================================== */
+
+.ending-actions button {
+  min-width: 160px;
+
+  padding:
+    12px
+    22px;
+
+  border-radius: 999px;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 0.95rem;
+
+  line-height: 1.2;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+/* ========================================
+   READ AGAIN BUTTON
+======================================== */
+
+.ending-read-again {
+  border:
+    1px solid
+    #f1dfb8;
+
+  color: #40513a;
+
+  background:
+    #f7f1df;
+
+  box-shadow:
+    0 7px 18px
+    rgba(20, 30, 20, 0.18);
+}
+
+
+.ending-read-again:hover {
+  transform:
+    translateY(-2px);
+
+  background:
+    #fff8e8;
+
+  box-shadow:
+    0 10px 24px
+    rgba(20, 30, 20, 0.24);
+}
+
+
+.ending-read-again:active {
+  transform:
+    translateY(0);
+}
+
+
+/* ========================================
+   CREATE LETTER BUTTON
+======================================== */
+
+.ending-create-letter {
+  border:
+    1px solid
+    rgba(247, 241, 223, 0.45);
+
+  color: #f7f1df;
+
+  background:
+    rgba(247, 241, 223, 0.06);
+}
+
+
+.ending-create-letter:hover {
+  transform:
+    translateY(-2px);
+
+  border-color:
+    rgba(247, 241, 223, 0.75);
+
+  background:
+    rgba(247, 241, 223, 0.13);
+
+  box-shadow:
+    0 8px 20px
+    rgba(20, 30, 20, 0.12);
+}
+
+
+.ending-create-letter:active {
+  transform:
+    translateY(0);
+}
+
+
+/* ========================================
+   KEYBOARD FOCUS
+======================================== */
+
+.ending-actions button:focus-visible {
+  outline:
+    2px solid
+    #d9ba77;
+
+  outline-offset: 4px;
+}
+
+
+/* ========================================
+   TABLET
+======================================== */
+
+@media (max-width: 900px) {
+
   .ending-page {
-    padding: 80px 20px 100px;
+    width: 84vw;
+
+    height:
+      calc(100vh - 160px);
+
+    padding:
+      50px
+      45px;
   }
 
-  .ending-page p {
-    font-size: 1rem;
+
+  .ending-actions {
+    margin-top: 34px;
   }
+
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 600px) {
+
+  .ending-page {
+    width: 90vw;
+
+    height:
+      calc(100vh - 145px);
+
+    padding:
+      45px
+      28px;
+
+    border-radius: 12px;
+
+    transform:
+      rotate(0.7deg);
+  }
+
+
+  .ending-decoration {
+    margin-bottom: 16px;
+
+    font-size: 1.2rem;
+  }
+
+
+  .ending-page h2 {
+    margin-bottom: 18px;
+
+    font-size:
+      clamp(
+        1.8rem,
+        8vw,
+        2.4rem
+      );
+  }
+
+
+  .ending-page p {
+    font-size: 0.95rem;
+
+    line-height: 1.6;
+  }
+
+
+  /* ======================================
+     MOBILE ACTIONS
+  ====================================== */
+
+  .ending-actions {
+    width: 100%;
+
+    flex-direction: column;
+
+    gap: 10px;
+
+    margin-top: 30px;
+  }
+
+
+  .ending-actions button {
+    width: 100%;
+    max-width: 280px;
+
+    min-width: 0;
+
+    padding:
+      11px
+      18px;
+
+    font-size: 0.9rem;
+  }
+
+}
+
+
+/* ========================================
+   SHORT SCREENS
+======================================== */
+
+@media (max-height: 650px) {
+
+  .ending-page {
+    height:
+      calc(100vh - 115px);
+
+    padding:
+      30px
+      45px;
+  }
+
+
+  .ending-decoration {
+    margin-bottom: 10px;
+
+    font-size: 1.1rem;
+  }
+
+
+  .ending-page h2 {
+    margin-bottom: 16px;
+
+    font-size:
+      clamp(
+        1.6rem,
+        3vw,
+        2.2rem
+      );
+  }
+
+
+  .ending-page p {
+    font-size: 0.9rem;
+
+    line-height: 1.55;
+  }
+
+
+  .ending-actions {
+    margin-top: 22px;
+
+    gap: 10px;
+  }
+
+
+  .ending-actions button {
+    padding:
+      9px
+      18px;
+
+    font-size: 0.85rem;
+  }
+
+}
+
+
+/* ========================================
+   REDUCED MOTION
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .ending-actions button {
+    transition: none;
+  }
+
+
+  .ending-actions button:hover {
+    transform: none;
+  }
+
 }

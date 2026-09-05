@@ -1,13 +1,17 @@
 import "./LetterFormSection.css"
 
+
 function LetterFormSection({
   number,
   title,
   description,
-  children
+  children,
+  className = ""
 }) {
   return (
-    <section className="letter-form-section">
+    <section
+      className={`letter-form-section ${className}`}
+    >
 
       <div className="letter-form-section-heading">
 
@@ -15,19 +19,24 @@ function LetterFormSection({
           {number}
         </span>
 
+
         <div>
+
           <h2>
             {title}
           </h2>
+
 
           {description && (
             <p>
               {description}
             </p>
           )}
+
         </div>
 
       </div>
+
 
       <div className="letter-form-section-content">
         {children}
@@ -36,5 +45,6 @@ function LetterFormSection({
     </section>
   )
 }
+
 
 export default LetterFormSection

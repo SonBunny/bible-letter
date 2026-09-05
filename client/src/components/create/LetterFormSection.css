@@ -1,18 +1,36 @@
 /* ========================================
-   LETTER FORM PAPER
+   NORMAL LETTER FORM PAPER
+
+   Step 01
+   Step 02
+   Step 05
 ======================================== */
 
 .letter-form-section {
-  width: min(760px, 90vw);
-  height: min(560px, calc(100vh - 170px));
+  width:
+    min(
+      760px,
+      90vw
+    );
+
+  height:
+    min(
+      560px,
+      calc(100vh - 170px)
+    );
 
   position: relative;
+
   flex-shrink: 0;
 
-  padding: 60px 70px;
+  padding:
+    60px
+    70px;
 
   display: flex;
+
   flex-direction: column;
+
   justify-content: center;
 
   border-radius: 10px;
@@ -28,7 +46,8 @@
     0 25px 60px
     rgba(77, 55, 35, 0.16);
 
-  transform: rotate(-0.4deg);
+  transform:
+    rotate(-0.4deg);
 
   overflow: hidden;
 
@@ -67,6 +86,7 @@
 
 .letter-form-section-heading {
   display: flex;
+
   align-items: flex-start;
 
   gap: 20px;
@@ -76,6 +96,8 @@
   position: relative;
 
   z-index: 2;
+
+  flex-shrink: 0;
 }
 
 
@@ -86,6 +108,7 @@
   flex-shrink: 0;
 
   display: flex;
+
   align-items: center;
   justify-content: center;
 
@@ -141,7 +164,7 @@
 
 
 /* ========================================
-   SECTION CONTENT
+   NORMAL CONTENT
 ======================================== */
 
 .letter-form-section-content {
@@ -154,10 +177,103 @@
 
 
 /* ========================================
+   STEP 03
+   SCRIPTURE & REFLECTION
+
+   ONLY Step 03 becomes larger.
+======================================== */
+
+.letter-form-section.scripture-reflection-section {
+  width:
+    min(
+      950px,
+      92vw
+    );
+
+  height:
+    min(
+      680px,
+      calc(100vh - 130px)
+    );
+
+  padding:
+    45px
+    65px;
+
+  justify-content: flex-start;
+}
+
+
+/* ========================================
+   STEP 03 HEADING
+======================================== */
+
+.scripture-reflection-section
+.letter-form-section-heading {
+  margin-bottom: 24px;
+}
+
+
+/* ========================================
+   STEP 03 CONTENT LAYOUT
+
+   The content takes all remaining space.
+
+   Scripture stays at the top.
+
+   Reflection gets pushed to the bottom.
+======================================== */
+
+.scripture-reflection-section
+.letter-form-section-content {
+  flex: 1;
+
+  min-height: 0;
+
+  display: flex;
+
+  flex-direction: column;
+}
+
+
+/* ========================================
+   REFLECTION AT BOTTOM
+======================================== */
+
+.scripture-reflection-section
+.reflection-input-area {
+  margin-top: auto;
+
+  flex-shrink: 0;
+
+  padding-top: 18px;
+}
+
+
+.scripture-reflection-section
+.reflection-input-area
+.text-area-field {
+  margin-bottom: 0;
+}
+
+
+.scripture-reflection-section
+.reflection-input-area
+textarea {
+  width: 100%;
+
+  min-height: 120px;
+
+  height: 120px;
+}
+
+
+/* ========================================
    ENTER ANIMATION
 ======================================== */
 
 @keyframes letterSectionEnter {
+
   from {
     opacity: 0;
 
@@ -167,6 +283,7 @@
       rotate(-0.4deg);
   }
 
+
   to {
     opacity: 1;
 
@@ -175,6 +292,7 @@
       scale(1)
       rotate(-0.4deg);
   }
+
 }
 
 
@@ -185,10 +303,29 @@
 @media (max-width: 900px) {
 
   .letter-form-section {
-    width: min(760px, 90vw);
+    width:
+      min(
+        760px,
+        90vw
+      );
 
     padding:
       50px
+      45px;
+  }
+
+
+  .letter-form-section.scripture-reflection-section {
+    width: 92vw;
+
+    height:
+      min(
+        680px,
+        calc(100vh - 130px)
+      );
+
+    padding:
+      40px
       45px;
   }
 
@@ -200,6 +337,8 @@
 ======================================== */
 
 @media (max-width: 600px) {
+
+  /* Normal Steps */
 
   .letter-form-section {
     width: 94vw;
@@ -215,10 +354,32 @@
   }
 
 
+  /* Step 03 */
+
+  .letter-form-section.scripture-reflection-section {
+    width: 94vw;
+
+    height:
+      calc(100vh - 120px);
+
+    padding:
+      30px
+      24px;
+
+    transform: none;
+  }
+
+
   .letter-form-section-heading {
     gap: 14px;
 
     margin-bottom: 28px;
+  }
+
+
+  .scripture-reflection-section
+  .letter-form-section-heading {
+    margin-bottom: 18px;
   }
 
 
@@ -235,6 +396,60 @@
 
   .letter-form-section-heading p {
     font-size: 0.9rem;
+  }
+
+
+  .scripture-reflection-section
+  .reflection-input-area {
+    padding-top: 12px;
+  }
+
+
+  .scripture-reflection-section
+  .reflection-input-area
+  textarea {
+    min-height: 100px;
+
+    height: 100px;
+  }
+
+}
+
+
+/* ========================================
+   SHORT SCREENS
+======================================== */
+
+@media (max-height: 750px) and (min-width: 601px) {
+
+  .letter-form-section.scripture-reflection-section {
+    height:
+      calc(100vh - 110px);
+
+    padding:
+      30px
+      55px;
+  }
+
+
+  .scripture-reflection-section
+  .letter-form-section-heading {
+    margin-bottom: 14px;
+  }
+
+
+  .scripture-reflection-section
+  .reflection-input-area {
+    padding-top: 10px;
+  }
+
+
+  .scripture-reflection-section
+  .reflection-input-area
+  textarea {
+    min-height: 90px;
+
+    height: 90px;
   }
 
 }

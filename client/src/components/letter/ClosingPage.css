@@ -1,34 +1,240 @@
+/* ========================================
+   CLOSING CARD
+======================================== */
+
 .closing-page {
-  min-height: 100vh;
-  background-color: mistyrose;
-  overflow-y: auto;
+  position: relative;
+
+  width: min(780px, 84vw);
+  height: min(630px, calc(100vh - 165px));
 
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
 
+  padding:
+    60px
+    70px;
+
+  border-radius: 12px;
+
+  color: #4d4035;
+
+  background:
+    linear-gradient(
+      160deg,
+      #fff9ef,
+      #f4e4cd
+    );
+
+  box-shadow:
+    0 25px 60px
+    rgba(70, 50, 30, 0.18);
+
+  transform:
+    rotate(1.2deg);
+
+  overflow: hidden;
+
   text-align: center;
-  padding: 40px 24px;
 }
+
+
+/* ========================================
+   INNER BORDER
+======================================== */
+
+.closing-page::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 12px;
+
+  border:
+    1px solid
+    rgba(130, 100, 70, 0.18);
+
+  border-radius: 8px;
+
+  pointer-events: none;
+}
+
+
+/* ========================================
+   SUBTLE PAPER TEXTURE
+======================================== */
+
+.closing-page::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  opacity: 0.07;
+
+  pointer-events: none;
+
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 8px,
+      rgba(80, 60, 40, 0.035) 9px
+    );
+}
+
+
+/* ========================================
+   HEADING
+======================================== */
 
 .closing-page h2 {
-  margin-bottom: 24px;
+  position: relative;
+
+  z-index: 2;
+
+  margin:
+    0
+    0
+    30px;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size:
+    clamp(
+      1.7rem,
+      3vw,
+      2.5rem
+    );
+
+  font-weight: 500;
+
+  color: #4f4338;
 }
+
+
+/* ========================================
+   MESSAGE
+======================================== */
 
 .closing-page p {
-  max-width: 600px;
-  font-size: 1.2rem;
+  position: relative;
+
+  z-index: 2;
+
+  max-width: 560px;
+
+  margin:
+    0
+    auto;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size:
+    clamp(
+      0.9rem,
+      1.3vw,
+      1.1rem
+    );
+
   line-height: 1.8;
+
+  white-space: pre-wrap;
+
+  overflow-wrap: break-word;
 }
 
 
-@media (max-width: 600px) {
+/* ========================================
+   TABLET
+======================================== */
+
+@media (max-width: 900px) {
+
   .closing-page {
-    padding: 80px 20px 100px;
+    width: 86vw;
+
+    height:
+      calc(100vh - 160px);
+
+    padding:
+      50px
+      45px;
   }
 
-  .closing-page p {
-    font-size: 1rem;
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 600px) {
+
+  .closing-page {
+    width: 90vw;
+
+    height:
+      calc(100vh - 145px);
+
+    padding:
+      45px
+      28px;
+
+    transform:
+      rotate(0.8deg);
   }
+
+
+  .closing-page h2 {
+    font-size: 1.7rem;
+  }
+
+
+  .closing-page p {
+    font-size: 0.9rem;
+
+    line-height: 1.65;
+  }
+
+}
+
+
+/* ========================================
+   SHORT SCREENS
+======================================== */
+
+@media (max-height: 650px) {
+
+  .closing-page {
+    height:
+      calc(100vh - 115px);
+
+    padding:
+      30px
+      40px;
+  }
+
+
+  .closing-page h2 {
+    margin-bottom: 18px;
+
+    font-size: 1.5rem;
+  }
+
+
+  .closing-page p {
+    font-size: 0.88rem;
+
+    line-height: 1.55;
+  }
+
 }

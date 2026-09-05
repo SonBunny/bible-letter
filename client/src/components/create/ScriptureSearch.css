@@ -1,0 +1,615 @@
+/* ========================================
+   SCRIPTURE SEARCH
+======================================== */
+
+.scripture-search {
+  width: 100%;
+
+  position: relative;
+
+  flex-shrink: 0;
+}
+
+
+/* ========================================
+   LABEL
+======================================== */
+
+.scripture-search > label {
+  display: block;
+
+  margin-bottom: 8px;
+
+  color:
+    #5a4e42;
+
+  font-family:
+    Arial,
+    sans-serif;
+
+  font-size:
+    0.75rem;
+
+  letter-spacing:
+    1.5px;
+
+  text-transform:
+    uppercase;
+}
+
+
+/* ========================================
+   SEARCH INPUT AREA
+======================================== */
+
+.scripture-search-input {
+  position: relative;
+
+  width: 100%;
+}
+
+
+/* ========================================
+   INPUT
+======================================== */
+
+.scripture-search-input input {
+  width: 100%;
+
+  padding:
+    13px
+    4px
+    11px;
+
+  border: none;
+
+  border-bottom:
+    1px solid
+    rgba(76, 64, 53, 0.35);
+
+  outline: none;
+
+  background:
+    transparent;
+
+  color:
+    #4c4035;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size:
+    1rem;
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+
+.scripture-search-input input:focus {
+  border-bottom-color:
+    #40513a;
+
+  background:
+    rgba(64, 81, 58, 0.025);
+}
+
+
+.scripture-search-input input::placeholder {
+  color:
+    rgba(76, 64, 53, 0.45);
+}
+
+
+/* ========================================
+   HORIZONTAL SUGGESTIONS
+
+   Book:
+   [ John ] [ 1 John ] [ 2 John ]
+
+   Chapter:
+   [ 1 ] [ 2 ] [ 3 ] [ 4 ]
+
+   Verse:
+   [ 1 ] [ 2 ] [ 3 ] [ 4 ]
+======================================== */
+
+.scripture-suggestions {
+  width: 100%;
+
+  display: flex;
+
+  flex-direction: row;
+
+  align-items: center;
+
+  gap: 8px;
+
+  margin-top: 10px;
+
+  padding:
+    3px
+    2px
+    9px;
+
+  overflow-x: auto;
+
+  overflow-y: hidden;
+
+  white-space: nowrap;
+
+  scroll-behavior: smooth;
+
+  scrollbar-width: thin;
+
+  scrollbar-color:
+    rgba(64, 81, 58, 0.3)
+    transparent;
+}
+
+
+/* ========================================
+   SUGGESTION BUTTON
+======================================== */
+
+.scripture-suggestions button {
+  flex:
+    0
+    0
+    auto;
+
+  min-width: 42px;
+
+  padding:
+    8px
+    14px;
+
+  border:
+    1px solid
+    rgba(64, 81, 58, 0.22);
+
+  border-radius:
+    999px;
+
+  background:
+    rgba(255, 255, 255, 0.4);
+
+  color:
+    #4c4035;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size:
+    0.88rem;
+
+  text-align:
+    center;
+
+  white-space:
+    nowrap;
+
+  cursor:
+    pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+
+.scripture-suggestions button:hover {
+  background:
+    rgba(64, 81, 58, 0.09);
+
+  border-color:
+    rgba(64, 81, 58, 0.45);
+
+  color:
+    #40513a;
+
+  transform:
+    translateY(-1px);
+}
+
+
+.scripture-suggestions button:active {
+  transform:
+    translateY(0);
+}
+
+
+/* ========================================
+   SUGGESTION SCROLLBAR
+======================================== */
+
+.scripture-suggestions::-webkit-scrollbar {
+  height: 5px;
+}
+
+
+.scripture-suggestions::-webkit-scrollbar-track {
+  background:
+    transparent;
+}
+
+
+.scripture-suggestions::-webkit-scrollbar-thumb {
+  background:
+    rgba(64, 81, 58, 0.28);
+
+  border-radius:
+    999px;
+}
+
+
+/* ========================================
+   LOADING
+======================================== */
+
+.scripture-searching {
+  margin:
+    12px
+    0
+    0;
+
+  color:
+    #78695a;
+
+  font-family:
+    Arial,
+    sans-serif;
+
+  font-size:
+    0.8rem;
+}
+
+
+/* ========================================
+   SCRIPTURE RESULT
+
+   Scripture gets more room now.
+
+   Long passages scroll INSIDE the result,
+   not inside the entire card.
+======================================== */
+
+.scripture-search-result {
+  width: 100%;
+
+  max-height: 210px;
+
+  margin-top: 16px;
+
+  padding:
+    16px
+    18px;
+
+  overflow-y: auto;
+
+  overflow-x: hidden;
+
+  border:
+    1px solid
+    rgba(130, 100, 70, 0.16);
+
+  border-radius:
+    8px;
+
+  background:
+    linear-gradient(
+      160deg,
+      rgba(255, 253, 247, 0.75),
+      rgba(247, 237, 221, 0.55)
+    );
+
+  scrollbar-width:
+    thin;
+
+  scrollbar-color:
+    rgba(64, 81, 58, 0.3)
+    transparent;
+}
+
+
+/* ========================================
+   REFERENCE
+======================================== */
+
+.scripture-result-reference {
+  margin:
+    0
+    0
+    10px;
+
+  color:
+    #40513a;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size:
+    1rem;
+
+  font-weight:
+    600;
+}
+
+
+/* ========================================
+   SCRIPTURE TEXT
+======================================== */
+
+.scripture-result-text {
+  margin:
+    0
+    0
+    12px;
+
+  color:
+    #4c4035;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size:
+    0.92rem;
+
+  line-height:
+    1.65;
+
+  white-space:
+    pre-wrap;
+
+  overflow-wrap:
+    break-word;
+}
+
+
+/* ========================================
+   TRANSLATION
+======================================== */
+
+.scripture-result-translation {
+  margin: 0;
+
+  color:
+    #8c7764;
+
+  font-family:
+    Arial,
+    sans-serif;
+
+  font-size:
+    0.68rem;
+
+  letter-spacing:
+    1.2px;
+
+  text-transform:
+    uppercase;
+}
+
+
+/* ========================================
+   RESULT SCROLLBAR
+======================================== */
+
+.scripture-search-result::-webkit-scrollbar {
+  width: 6px;
+}
+
+
+.scripture-search-result::-webkit-scrollbar-track {
+  background:
+    transparent;
+}
+
+
+.scripture-search-result::-webkit-scrollbar-thumb {
+  background:
+    rgba(64, 81, 58, 0.28);
+
+  border-radius:
+    999px;
+}
+
+
+.scripture-search-result::-webkit-scrollbar-thumb:hover {
+  background:
+    rgba(64, 81, 58, 0.42);
+}
+
+
+/* ========================================
+   ERROR
+======================================== */
+
+.scripture-search-error {
+  margin:
+    10px
+    0
+    0;
+
+  color:
+    #8a4148;
+
+  font-family:
+    Arial,
+    sans-serif;
+
+  font-size:
+    0.82rem;
+}
+
+
+/* ========================================
+   TABLET
+======================================== */
+
+@media (max-width: 900px) {
+
+  .scripture-search-result {
+    max-height: 190px;
+
+    padding:
+      15px
+      16px;
+  }
+
+
+  .scripture-suggestions button {
+    padding:
+      7px
+      13px;
+
+    font-size:
+      0.85rem;
+  }
+
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 600px) {
+
+  .scripture-search > label {
+    font-size:
+      0.7rem;
+  }
+
+
+  .scripture-search-input input {
+    padding:
+      11px
+      3px
+      10px;
+
+    font-size:
+      0.95rem;
+  }
+
+
+  .scripture-suggestions {
+    gap: 6px;
+
+    margin-top: 8px;
+
+    padding-bottom: 7px;
+  }
+
+
+  .scripture-suggestions button {
+    min-width: 38px;
+
+    padding:
+      7px
+      12px;
+
+    font-size:
+      0.82rem;
+  }
+
+
+  .scripture-search-result {
+    max-height: 150px;
+
+    margin-top: 12px;
+
+    padding:
+      13px
+      14px;
+  }
+
+
+  .scripture-result-reference {
+    margin-bottom: 8px;
+
+    font-size:
+      0.92rem;
+  }
+
+
+  .scripture-result-text {
+    margin-bottom: 10px;
+
+    font-size:
+      0.85rem;
+
+    line-height:
+      1.55;
+  }
+
+
+  .scripture-result-translation {
+    font-size:
+      0.63rem;
+  }
+
+}
+
+
+/* ========================================
+   SHORT SCREENS
+======================================== */
+
+@media (max-height: 750px) and (min-width: 601px) {
+
+  .scripture-search-input input {
+    padding:
+      9px
+      3px;
+  }
+
+
+  .scripture-suggestions {
+    margin-top: 6px;
+
+    padding-bottom: 6px;
+  }
+
+
+  .scripture-suggestions button {
+    padding:
+      6px
+      11px;
+
+    font-size:
+      0.8rem;
+  }
+
+
+  .scripture-search-result {
+    max-height: 140px;
+
+    margin-top: 10px;
+
+    padding:
+      11px
+      13px;
+  }
+
+
+  .scripture-result-text {
+    font-size:
+      0.82rem;
+
+    line-height:
+      1.45;
+  }
+
+}
