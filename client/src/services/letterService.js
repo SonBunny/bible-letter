@@ -1,4 +1,4 @@
-const API_URL = import.meta.env.VITE_API_URL
+const API_URL = import.meta.env.API_URL
 
 export const createLetter = (letter) => {
   return fetch(`${API_URL}/api/letters`, {
