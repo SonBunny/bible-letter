@@ -1,0 +1,780 @@
+/* =====================================================
+   SCREEN
+===================================================== */
+
+.envelope-screen {
+  width: 100%;
+  min-height: 100vh;
+
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 60px 20px;
+
+  overflow: hidden;
+
+  text-align: center;
+
+  perspective: 1500px;
+
+  background:
+    radial-gradient(
+      circle at center,
+      #fffaf0 0%,
+      #f8ecd6 55%,
+      #efdfc3 100%
+    );
+}
+
+
+/* =====================================================
+   ENVELOPE
+===================================================== */
+
+.envelope {
+  position: relative;
+
+  width: clamp(500px, 48vw, 720px);
+
+  aspect-ratio: 1.55 / 1;
+
+  margin-bottom: 55px;
+
+  cursor: pointer;
+
+  transform-style: preserve-3d;
+
+  overflow: visible;
+
+  filter:
+    drop-shadow(
+      0 25px 22px rgba(70, 50, 30, 0.20)
+    );
+
+  animation:
+    envelopeFloat 3.5s ease-in-out infinite;
+}
+
+
+/* =====================================================
+   FLOATING / SLANT
+===================================================== */
+
+@keyframes envelopeFloat {
+  0% {
+    transform:
+      rotate(-5deg)
+      translateY(0);
+  }
+
+  50% {
+    transform:
+      rotate(-3deg)
+      translateY(-12px);
+  }
+
+  100% {
+    transform:
+      rotate(-5deg)
+      translateY(0);
+  }
+}
+
+
+.envelope:not(.open):hover {
+  animation-play-state: paused;
+
+  transform:
+    rotate(-2deg)
+    translateY(-8px)
+    scale(1.02);
+}
+
+
+/* =====================================================
+   OPENING POSITION
+===================================================== */
+
+.envelope.open {
+  animation:
+    envelopeOpenPosition 0.55s ease forwards;
+}
+
+
+@keyframes envelopeOpenPosition {
+  from {
+    transform:
+      rotate(-5deg)
+      translateY(0);
+  }
+
+  to {
+    transform:
+      rotate(-1deg)
+      translateY(35px);
+  }
+}
+
+
+/* =====================================================
+   BACK / BASE
+===================================================== */
+
+.envelope-back {
+  position: absolute;
+
+  inset: 0;
+
+  border-radius: 10px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #e5c48e,
+      #d8b477
+    );
+
+  z-index: 1;
+}
+
+
+/* =====================================================
+   LETTER PAPER
+===================================================== */
+
+.letter-paper {
+  position: absolute;
+
+  width: 86%;
+  height: 72%;
+
+  left: 50%;
+  top: 20%;
+
+  transform:
+    translateX(-50%)
+    translateY(42%);
+
+  opacity: 0;
+
+  border-radius: 8px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #fffef9,
+      #fff9ee
+    );
+
+  box-shadow:
+    0 8px 20px rgba(60, 43, 28, 0.15);
+
+  z-index: 2;
+
+  overflow: hidden;
+
+  transition:
+    transform 1s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.22s ease;
+
+  transition-delay:
+    0.58s,
+    0.5s;
+}
+
+
+/* subtle paper texture */
+
+.letter-paper::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  pointer-events: none;
+
+  opacity: 0.12;
+
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 8px,
+      rgba(90, 65, 40, 0.04) 9px
+    );
+}
+
+
+/* =====================================================
+   PAPER CONTENT
+===================================================== */
+
+.letter-paper-content {
+  position: relative;
+
+  z-index: 2;
+
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 12px;
+
+  padding: 30px;
+
+  color: #504337;
+}
+
+
+.letter-small-text {
+  font-size: 0.85rem;
+
+  letter-spacing: 4px;
+
+  text-transform: uppercase;
+
+  opacity: 0.55;
+}
+
+
+.letter-paper-name {
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size:
+    clamp(
+      1.4rem,
+      2vw,
+      1.9rem
+    );
+}
+
+
+.letter-heart {
+  font-size: 1.5rem;
+
+  color: #a85262;
+}
+
+
+/* =====================================================
+   PAPER OPEN ANIMATION
+===================================================== */
+
+.envelope.open .letter-paper {
+  transform:
+    translateX(-50%)
+    translateY(-68%);
+
+  opacity: 1;
+}
+
+
+/* =====================================================
+   TOP FLAP
+===================================================== */
+
+.envelope-flap {
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 57%;
+
+  background:
+    linear-gradient(
+      145deg,
+      #e2c18b,
+      #d5ae73
+    );
+
+  clip-path:
+    polygon(
+      0 0,
+      100% 0,
+      50% 100%
+    );
+
+  transform-origin: top center;
+
+  transform-style: preserve-3d;
+
+  backface-visibility: hidden;
+
+  z-index: 6;
+
+  transition:
+    transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+
+  transition-delay: 0.12s;
+}
+
+
+.envelope.open .envelope-flap {
+  transform:
+    rotateX(175deg);
+
+  z-index: 1;
+}
+
+
+/* =====================================================
+   FRONT OF ENVELOPE
+===================================================== */
+
+.envelope-front {
+  position: absolute;
+
+  inset: 0;
+
+  overflow: hidden;
+
+  border-radius: 10px;
+
+  z-index: 4;
+
+  pointer-events: none;
+}
+
+
+/* =====================================================
+   LEFT FOLD
+===================================================== */
+
+.envelope-left-fold {
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      135deg,
+      #efd8b0,
+      #e7c795
+    );
+
+  clip-path:
+    polygon(
+      0 26%,
+      52% 100%,
+      0 100%
+    );
+}
+
+
+/* =====================================================
+   RIGHT FOLD
+===================================================== */
+
+.envelope-right-fold {
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      225deg,
+      #e9cda1,
+      #dfbd88
+    );
+
+  clip-path:
+    polygon(
+      100% 26%,
+      48% 100%,
+      100% 100%
+    );
+}
+
+
+/* =====================================================
+   BOTTOM FOLD
+===================================================== */
+
+.envelope-bottom-fold {
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      180deg,
+      #f4dfba,
+      #ebcd9d
+    );
+
+  clip-path:
+    polygon(
+      0 100%,
+      50% 48%,
+      100% 100%
+    );
+}
+
+
+/* =====================================================
+   WAX SEAL
+===================================================== */
+
+.envelope-seal {
+  position: absolute;
+
+  left: 50%;
+  top: 49%;
+
+  transform:
+    translate(-50%, -50%);
+
+  width:
+    clamp(
+      60px,
+      5vw,
+      78px
+    );
+
+  height:
+    clamp(
+      60px,
+      5vw,
+      78px
+    );
+
+  border-radius: 50%;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  background:
+    radial-gradient(
+      circle at 32% 28%,
+      #c97b89,
+      #a54e60 55%,
+      #7c3544
+    );
+
+  color: #fff1e8;
+
+  font-size:
+    clamp(
+      1.4rem,
+      2vw,
+      1.9rem
+    );
+
+  z-index: 8;
+
+  box-shadow:
+    0 7px 14px rgba(90, 40, 50, 0.30),
+    inset 0 3px 5px rgba(255, 255, 255, 0.20);
+
+  transition:
+    transform 0.32s ease,
+    opacity 0.32s ease;
+}
+
+
+.envelope.open .envelope-seal {
+  transform:
+    translate(-50%, -50%)
+    scale(0);
+
+  opacity: 0;
+}
+
+
+/* =====================================================
+   DETAILS UNDER ENVELOPE
+===================================================== */
+
+.envelope-details {
+  position: relative;
+
+  z-index: 20;
+
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+
+.envelope-details.opening {
+  opacity: 0;
+
+  transform:
+    translateY(12px);
+
+  pointer-events: none;
+}
+
+
+.envelope-recipient {
+  margin:
+    0
+    0
+    18px;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size:
+    clamp(
+      1.3rem,
+      2vw,
+      1.7rem
+    );
+
+  color: #4d4034;
+}
+
+
+/* =====================================================
+   OPEN BUTTON
+===================================================== */
+
+.open-letter-button {
+  padding:
+    14px
+    30px;
+
+  border: none;
+
+  border-radius: 999px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #5e6b51,
+      #45533d
+    );
+
+  color: #fffdf8;
+
+  font-family: inherit;
+
+  font-size: 1.05rem;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 7px 14px rgba(55, 65, 48, 0.20);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+
+.open-letter-button:hover:not(:disabled) {
+  transform:
+    translateY(-3px)
+    scale(1.03);
+
+  box-shadow:
+    0 11px 20px rgba(55, 65, 48, 0.25);
+}
+
+
+.open-letter-button:active:not(:disabled) {
+  transform:
+    scale(0.97);
+}
+
+
+.open-letter-button:disabled {
+  cursor: default;
+}
+
+
+/* =====================================================
+   DECORATIONS
+===================================================== */
+
+.envelope-decoration {
+  position: absolute;
+
+  pointer-events: none;
+
+  opacity: 0.5;
+
+  color: #b88d52;
+}
+
+
+.decoration-one {
+  top: 20%;
+  left: 18%;
+
+  font-size: 1.5rem;
+
+  animation:
+    decorationFloat 4s ease-in-out infinite;
+}
+
+
+.decoration-two {
+  top: 30%;
+  right: 18%;
+
+  font-size: 1.3rem;
+
+  color: #b45e70;
+
+  animation:
+    decorationFloat 5s ease-in-out infinite reverse;
+}
+
+
+.decoration-three {
+  bottom: 18%;
+  right: 25%;
+
+  font-size: 1rem;
+
+  animation:
+    decorationFloat 3.5s ease-in-out infinite;
+}
+
+
+@keyframes decorationFloat {
+  0%,
+  100% {
+    transform:
+      translateY(0)
+      rotate(0deg);
+  }
+
+  50% {
+    transform:
+      translateY(-10px)
+      rotate(8deg);
+  }
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 900px) {
+  .envelope {
+    width:
+      min(
+        82vw,
+        600px
+      );
+  }
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 600px) {
+  .envelope-screen {
+    padding:
+      40px
+      16px;
+  }
+
+
+  .envelope {
+    width:
+      min(
+        90vw,
+        430px
+      );
+
+    margin-bottom: 40px;
+  }
+
+
+  .letter-small-text {
+    font-size: 0.65rem;
+
+    letter-spacing: 2px;
+  }
+
+
+  .letter-paper-name {
+    font-size: 1.15rem;
+  }
+
+
+  .envelope-recipient {
+    font-size: 1.2rem;
+  }
+
+
+  .open-letter-button {
+    padding:
+      12px
+      25px;
+
+    font-size: 0.95rem;
+  }
+
+
+  .decoration-one {
+    left: 6%;
+  }
+
+
+  .decoration-two {
+    right: 6%;
+  }
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width: 380px) {
+  .envelope {
+    width: 92vw;
+  }
+
+
+  .letter-paper-content {
+    padding: 15px;
+  }
+}
+
+
+/* =====================================================
+   ACCESSIBILITY
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .envelope,
+  .envelope-decoration {
+    animation: none;
+  }
+
+
+  .envelope-flap,
+  .letter-paper,
+  .envelope-seal,
+  .envelope-details {
+    transition-duration: 0.01ms;
+  }
+}

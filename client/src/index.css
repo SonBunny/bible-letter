@@ -2,8 +2,18 @@
   box-sizing: border-box;
 }
 
-body {
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
   margin: 0;
-  font-family: Arial, sans-serif;
+  padding: 0;
 }
 
+body {
+  min-width: 320px;
+  min-height: 100vh;
+
+  font-family: Arial, sans-serif;
+}

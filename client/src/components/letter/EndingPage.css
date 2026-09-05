@@ -1,0 +1,32 @@
+.ending-page {
+  min-height: 100vh;
+  background-color: lightgray;
+  overflow-y: auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+  padding: 40px 24px;
+}
+
+.ending-page h2 {
+  font-size: 2rem;
+  margin-bottom: 16px;
+}
+
+.ending-page p {
+  font-size: 1.1rem;
+}
+
+@media (max-width: 600px) {
+  .ending-page {
+    padding: 80px 20px 100px;
+  }
+
+  .ending-page p {
+    font-size: 1rem;
+  }
+}

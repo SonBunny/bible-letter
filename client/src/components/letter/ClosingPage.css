@@ -1,0 +1,34 @@
+.closing-page {
+  min-height: 100vh;
+  background-color: mistyrose;
+  overflow-y: auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+  padding: 40px 24px;
+}
+
+.closing-page h2 {
+  margin-bottom: 24px;
+}
+
+.closing-page p {
+  max-width: 600px;
+  font-size: 1.2rem;
+  line-height: 1.8;
+}
+
+
+@media (max-width: 600px) {
+  .closing-page {
+    padding: 80px 20px 100px;
+  }
+
+  .closing-page p {
+    font-size: 1rem;
+  }
+}

@@ -1,0 +1,31 @@
+.personal-message-page {
+  min-height: 100vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 650px;
+  margin: 0 auto;
+  padding: 40px 24px;
+  background-color: lightyellow;
+}
+
+.personal-message-page h2 {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.personal-message-page p {
+  font-size: 1.15rem;
+  line-height: 1.8;
+}
+
+@media (max-width: 600px) {
+  .personal-message-page {
+    padding: 80px 20px 100px;
+  }
+
+  .personal-message-page p {
+    font-size: 1rem;
+  }
+}

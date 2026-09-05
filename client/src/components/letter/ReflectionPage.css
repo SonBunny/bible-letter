@@ -1,0 +1,33 @@
+.reflection-page {
+  min-height: 100vh;
+  background-color: lavender;
+  overflow-y: auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 40px 24px;
+}
+
+.reflection-page h2 {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.reflection-page p {
+  font-size: 1.15rem;
+  line-height: 1.8;
+}
+
+@media (max-width: 600px) {
+  .reflection-page {
+    padding: 80px 20px 100px;
+  }
+
+  .reflection-page p {
+    font-size: 1rem;
+  }
+}
