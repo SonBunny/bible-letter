@@ -1,0 +1,178 @@
+.step-card {
+  position: relative;
+
+  min-height: 340px;
+
+  padding:
+    42px
+    30px;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  color: #4c4035;
+
+  background:
+    linear-gradient(
+      180deg,
+      #fffaf0,
+      #f8ead4
+    );
+
+  box-shadow:
+    0 16px 32px
+    rgba(83, 59, 39, 0.12);
+
+  clip-path:
+    polygon(
+      1% 2%,
+      98% 0,
+      100% 97%,
+      96% 100%,
+      3% 99%,
+      0 4%
+    );
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+
+.step-card:hover {
+  transform:
+    translateY(-8px)
+    rotate(0deg);
+
+  box-shadow:
+    0 22px 40px
+    rgba(83, 59, 39, 0.17);
+}
+
+
+.step-card-one {
+  transform:
+    rotate(-2deg);
+}
+
+
+.step-card-two {
+  transform:
+    translateY(12px)
+    rotate(1deg);
+}
+
+
+.step-card-three {
+  transform:
+    translateY(-5px)
+    rotate(-1deg);
+
+  background:
+    linear-gradient(
+      180deg,
+      #f5efdc,
+      #eae2c7
+    );
+}
+
+
+.step-card-four {
+  transform:
+    translateY(10px)
+    rotate(2deg);
+
+  background:
+    linear-gradient(
+      180deg,
+      #f7e5dc,
+      #efd5c8
+    );
+}
+
+
+.step-number {
+  margin-bottom: 22px;
+
+  color: #887867;
+
+  font-family:
+    Arial,
+    sans-serif;
+
+  font-size: 0.75rem;
+
+  letter-spacing: 2px;
+}
+
+
+.step-icon {
+  margin-bottom: 20px;
+
+  color: #50604a;
+
+  font-size: 2.4rem;
+}
+
+
+.step-card h3 {
+  margin:
+    0
+    0
+    14px;
+
+  color: #4a4036;
+
+  font-size: 1.55rem;
+
+  font-weight: 500;
+}
+
+
+.step-card p {
+  max-width: 210px;
+
+  margin: 0;
+
+  font-size: 0.98rem;
+
+  line-height: 1.6;
+}
+
+
+.step-decoration {
+  position: absolute;
+
+  right: 25px;
+  bottom: 20px;
+
+  color: #a95661;
+
+  font-size: 1.35rem;
+}
+
+
+@media (max-width: 600px) {
+
+  .step-card {
+    min-height: 290px;
+
+    padding:
+      35px
+      25px;
+  }
+
+
+  .step-card-one,
+  .step-card-two,
+  .step-card-three,
+  .step-card-four {
+    transform: none;
+  }
+
+}

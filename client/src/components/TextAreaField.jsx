@@ -1,13 +1,22 @@
-function TextAreaField({ id, label, value, onChange }) {
+function TextAreaField({
+  id,
+  label,
+  value,
+  onChange
+}) {
   return (
-    <div>
-      <label htmlFor={id}>{label}</label>
+    <div className="text-area-field">
+
+      <label htmlFor={id}>
+        {label}
+      </label>
 
       <textarea
         id={id}
         value={value}
         onChange={onChange}
       />
+
     </div>
   )
 }

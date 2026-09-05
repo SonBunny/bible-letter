@@ -1,0 +1,192 @@
+/* ========================================
+   BACKGROUND MUSIC CONTROL
+======================================== */
+
+.background-music-control {
+  position: fixed;
+
+  left: 22px;
+  bottom: 22px;
+
+  z-index: 300;
+
+  display: flex;
+  align-items: center;
+
+  gap: 14px;
+
+  padding:
+    10px
+    12px
+    10px
+    14px;
+
+  border:
+    1px solid
+    rgba(95, 76, 57, 0.15);
+
+  border-radius: 999px;
+
+  background:
+    rgba(255, 250, 240, 0.92);
+
+  box-shadow:
+    0 8px 25px
+    rgba(77, 55, 35, 0.14);
+
+  backdrop-filter:
+    blur(8px);
+
+  color: #4c4035;
+}
+
+
+/* ========================================
+   MUSIC INFORMATION
+======================================== */
+
+.background-music-info {
+  display: flex;
+  align-items: center;
+
+  gap: 9px;
+}
+
+
+.background-music-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 30px;
+  height: 30px;
+
+  border-radius: 50%;
+
+  color: #40513a;
+
+  background:
+    rgba(64, 81, 58, 0.08);
+
+  font-size: 0.9rem;
+}
+
+
+.background-music-label {
+  margin:
+    0
+    0
+    2px;
+
+  color: #8c7764;
+
+  font-family:
+    Arial,
+    sans-serif;
+
+  font-size: 0.52rem;
+
+  letter-spacing: 1.4px;
+}
+
+
+.background-music-title {
+  max-width: 160px;
+
+  margin: 0;
+
+  overflow: hidden;
+
+  color: #4c4035;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 0.8rem;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+/* ========================================
+   PLAY / PAUSE
+======================================== */
+
+.background-music-toggle {
+  width: 34px;
+  height: 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  padding: 0;
+
+  border: none;
+  border-radius: 50%;
+
+  background: #40513a;
+
+  color: #fffaf0;
+
+  cursor: pointer;
+
+  font-size: 0.7rem;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+.background-music-toggle:hover {
+  transform: scale(1.06);
+
+  box-shadow:
+    0 5px 12px
+    rgba(48, 64, 43, 0.2);
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 600px) {
+
+  .background-music-control {
+    left: 12px;
+    bottom: 78px;
+
+    padding:
+      8px
+      9px
+      8px
+      11px;
+  }
+
+
+  .background-music-title {
+    max-width: 110px;
+
+    font-size: 0.75rem;
+  }
+
+
+  .background-music-icon {
+    width: 27px;
+    height: 27px;
+  }
+
+
+  .background-music-toggle {
+    width: 31px;
+    height: 31px;
+  }
+
+}

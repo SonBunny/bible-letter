@@ -1,7 +1,16 @@
-function FormField({ id, label, value, onChange, type = "text" }) {
+function FormField({
+  id,
+  label,
+  value,
+  onChange,
+  type = "text"
+}) {
   return (
-    <div>
-      <label htmlFor={id}>{label}</label>
+    <div className="form-field">
+
+      <label htmlFor={id}>
+        {label}
+      </label>
 
       <input
         id={id}
@@ -9,6 +18,7 @@ function FormField({ id, label, value, onChange, type = "text" }) {
         value={value}
         onChange={onChange}
       />
+
     </div>
   )
 }

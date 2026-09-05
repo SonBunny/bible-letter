@@ -1,32 +1,296 @@
-.scripture-page {
-  min-height: 100vh;
-  overflow-y: auto;
+/* ========================================
+   SCRIPTURE CARD
+======================================== */
+
+.scripture-card {
+  position: relative;
+
+  width: min(760px, 82vw);
+  height: min(620px, calc(100vh - 165px));
+
   display: flex;
   flex-direction: column;
+
   align-items: center;
   justify-content: center;
+
+  padding:
+    60px
+    65px;
+
   text-align: center;
-  padding: 40px 24px;
-  background-color: lightgreen;
+
+  border-radius: 14px;
+
+  color: #f7f1df;
+
+  background:
+    linear-gradient(
+      145deg,
+      #4d604c,
+      #344735
+    );
+
+  box-shadow:
+    0 25px 60px
+    rgba(35, 45, 34, 0.28);
+
+  /*
+    This small rotation makes the Scripture
+    feel like a physical card.
+  */
+  transform:
+    rotate(1.5deg);
+
+  overflow: hidden;
 }
 
-.scripture-page h2 {
-  margin-bottom: 24px;
+
+/* ========================================
+   INNER BORDER
+======================================== */
+
+.scripture-card::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 12px;
+
+  border:
+    1px solid
+    rgba(244, 229, 190, 0.25);
+
+  border-radius: 9px;
+
+  pointer-events: none;
 }
 
-.scripture-page p {
-  max-width: 700px;
-  font-size: 1.5rem;
-  line-height: 1.7;
+
+/* ========================================
+   SUBTLE CARD TEXTURE
+======================================== */
+
+.scripture-card::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  opacity: 0.08;
+
+  pointer-events: none;
+
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 8px,
+      rgba(255, 255, 255, 0.03) 9px
+    );
+}
+
+
+/* ========================================
+   SCRIPTURE LABEL
+======================================== */
+
+.scripture-label {
+  position: relative;
+
+  z-index: 2;
+
+  margin:
+    0
+    0
+    28px;
+
+  text-transform: uppercase;
+
+  letter-spacing: 4px;
+
+  font-size: 0.75rem;
+
+  opacity: 0.7;
+}
+
+
+/* ========================================
+   VERSE
+======================================== */
+
+.scripture-text {
+  position: relative;
+
+  z-index: 2;
+
+  width: 100%;
+  max-width: 650px;
+
+  margin: 0;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size:
+    clamp(
+      1.35rem,
+      2.4vw,
+      2.15rem
+    );
+
+  line-height: 1.65;
+
   font-style: italic;
+
+  overflow-wrap: break-word;
 }
+
+
+/* ========================================
+   DECORATION
+======================================== */
+
+.scripture-decoration {
+  position: relative;
+
+  z-index: 2;
+
+  margin-bottom: 22px;
+
+  color: #d9ba77;
+
+  font-size: 1.3rem;
+}
+
+
+.scripture-decoration.bottom {
+  margin:
+    28px
+    0
+    0;
+}
+
+
+/* ========================================
+   TABLET
+======================================== */
+
+@media (max-width: 900px) {
+
+  .scripture-card {
+    width: 84vw;
+
+    height:
+      calc(100vh - 160px);
+
+    padding:
+      50px
+      45px;
+  }
+
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
 
 @media (max-width: 600px) {
-  .scripture-page {
-    padding: 80px 20px 100px;
+
+  .scripture-card {
+    width: 90vw;
+
+    height:
+      calc(100vh - 145px);
+
+    padding:
+      45px
+      28px;
+
+    border-radius: 12px;
+
+    transform:
+      rotate(1deg);
   }
 
-  .scripture-page p {
-    font-size: 1rem;
+
+  .scripture-label {
+    margin-bottom: 20px;
+
+    font-size: 0.68rem;
+
+    letter-spacing: 3px;
   }
+
+
+  .scripture-text {
+    font-size:
+      clamp(
+        1.1rem,
+        5vw,
+        1.55rem
+      );
+
+    line-height: 1.6;
+  }
+
+
+  .scripture-decoration {
+    margin-bottom: 18px;
+  }
+
+
+  .scripture-decoration.bottom {
+    margin-top: 22px;
+  }
+
+}
+
+
+/* ========================================
+   SHORT SCREENS
+======================================== */
+
+@media (max-height: 650px) {
+
+  .scripture-card {
+    height:
+      calc(100vh - 115px);
+
+    padding:
+      30px
+      45px;
+  }
+
+
+  .scripture-label {
+    margin-bottom: 15px;
+  }
+
+
+  .scripture-text {
+    font-size:
+      clamp(
+        1rem,
+        2vw,
+        1.5rem
+      );
+
+    line-height: 1.5;
+  }
+
+
+  .scripture-decoration {
+    margin-bottom: 12px;
+  }
+
+
+  .scripture-decoration.bottom {
+    margin-top: 15px;
+  }
+
 }

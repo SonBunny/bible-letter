@@ -1,0 +1,23 @@
+.home-page {
+  position: relative;
+
+  width: 100%;
+  min-height: 100vh;
+
+  margin: 0;
+
+  background:
+    radial-gradient(
+      circle at center,
+      #fbf0dc 0%,
+      #f4e3c6 55%,
+      #ead3ae 100%
+    );
+
+  color: #4c4035;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+}

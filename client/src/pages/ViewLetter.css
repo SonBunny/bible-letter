@@ -1,55 +1,23 @@
 /* ========================================
-   MAIN BIBLE LETTER EXPERIENCE
+   MAIN EXPERIENCE
 ======================================== */
 
 .letter-page {
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
 
   margin: 0;
   padding: 0;
 
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
-
-/* ========================================
-   CURRENT LETTER SCREEN
-======================================== */
 
 .letter-screen {
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
 
-  animation: fadeIn 0.4s ease;
-}
-
-
-/* ========================================
-   SCREEN TRANSITION
-======================================== */
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-
-/* ========================================
-   LETTER SECTIONS
-======================================== */
-
-.letter-page section {
-  margin-bottom: 32px;
-}
-
-.letter-page h1 {
-  text-align: center;
+  overflow: hidden;
 }
 
 
@@ -88,18 +56,20 @@
 }
 
 
-.letter-navigation button:hover {
+.letter-navigation button:hover:not(:disabled) {
   transform: translateY(-2px);
 }
 
 
-.letter-navigation button:active {
-  transform: translateY(0);
+.letter-navigation button:disabled {
+  cursor: default;
+
+  opacity: 0.6;
 }
 
 
 /* ========================================
-   STEP INDICATOR
+   PROGRESS
 ======================================== */
 
 .step-indicator {
@@ -116,10 +86,6 @@
 }
 
 
-/* ========================================
-   PROGRESS BAR
-======================================== */
-
 .progress-bar {
   position: fixed;
 
@@ -131,29 +97,337 @@
 
   z-index: 200;
 
-  background-color: rgba(0, 0, 0, 0.08);
+  background:
+    rgba(0, 0, 0, 0.08);
 }
 
 
 .progress-bar-fill {
   height: 100%;
 
-  background-color: #3f4938;
+  background:
+    #3f4938;
 
-  transition: width 0.3s ease;
+  transition:
+    width 0.3s ease;
 }
 
 
 /* ========================================
-   TABLET
+   STATIONERY STAGE
+
+   This never moves.
 ======================================== */
 
-@media (max-width: 900px) {
+.stationery-stage {
+  position: relative;
 
-  .letter-navigation {
-    bottom: 20px;
-  }
+  width: 100%;
+  height: 100vh;
 
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at center,
+      #f9eedc 0%,
+      #f2dfc0 100%
+    );
+}
+
+
+/* ========================================
+   ALL THREE CARDS
+
+   They are ALWAYS mounted.
+======================================== */
+
+.message-stack-layer,
+.scripture-stack-layer,
+.reflection-stack-layer {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  transform-origin:
+    center center;
+
+  transition:
+    transform 0.75s
+      cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.65s ease;
+
+  will-change:
+    transform,
+    opacity;
+}
+
+
+/* ========================================
+   STEP 1
+
+   Personal Message in front.
+   Scripture visible behind.
+   Reflection already behind Scripture.
+
+   NOTHING needs to load afterward.
+======================================== */
+
+.stack-step-1
+.message-stack-layer {
+  z-index: 5;
+
+  transform:
+    translate(-50%, -50%)
+    rotate(-1deg);
+
+  opacity: 1;
+}
+
+
+.stack-step-1
+.scripture-stack-layer {
+  z-index: 4;
+
+  transform:
+    translate(-50%, -50%)
+    translate(55px, -42px)
+    rotate(3deg)
+    scale(0.96);
+
+  opacity: 1;
+}
+
+
+.stack-step-1
+.reflection-stack-layer {
+  z-index: 3;
+
+  transform:
+    translate(-50%, -50%)
+    translate(-48px, -65px)
+    rotate(-4deg)
+    scale(0.92);
+
+  opacity: 1;
+}
+
+
+/* ========================================
+   PERSONAL → SCRIPTURE ANIMATION
+======================================== */
+
+.to-scripture
+.message-stack-layer {
+  z-index: 5;
+
+  transform:
+    translate(-50%, -50%)
+    translate(-140px, 80px)
+    rotate(-8deg)
+    scale(0.86);
+
+  opacity: 0;
+}
+
+
+.to-scripture
+.scripture-stack-layer {
+  z-index: 6;
+
+  transform:
+    translate(-50%, -50%)
+    translate(0, 0)
+    rotate(0deg)
+    scale(1);
+
+  opacity: 1;
+}
+
+
+/*
+   Reflection DOES NOT animate.
+
+   It stays exactly where it will be
+   when Scripture becomes active.
+*/
+
+.to-scripture
+.reflection-stack-layer {
+  z-index: 3;
+
+  transform:
+    translate(-50%, -50%)
+    translate(-55px, -38px)
+    rotate(-3deg)
+    scale(0.96);
+
+  opacity: 1;
+}
+
+
+/* ========================================
+   STEP 2
+
+   IMPORTANT:
+
+   These values exactly match the END
+   of the previous animation.
+
+   Therefore there is NO second movement.
+======================================== */
+
+.stack-step-2
+.message-stack-layer {
+  z-index: 1;
+
+  transform:
+    translate(-50%, -50%)
+    translate(-140px, 80px)
+    rotate(-8deg)
+    scale(0.86);
+
+  opacity: 0;
+}
+
+
+.stack-step-2
+.scripture-stack-layer {
+  z-index: 5;
+
+  transform:
+    translate(-50%, -50%)
+    translate(0, 0)
+    rotate(0deg)
+    scale(1);
+
+  opacity: 1;
+}
+
+
+.stack-step-2
+.reflection-stack-layer {
+  z-index: 4;
+
+  transform:
+    translate(-50%, -50%)
+    translate(-55px, -38px)
+    rotate(-3deg)
+    scale(0.96);
+
+  opacity: 1;
+}
+
+
+/* ========================================
+   SCRIPTURE → REFLECTION
+======================================== */
+
+.to-reflection
+.message-stack-layer {
+  z-index: 1;
+
+  transform:
+    translate(-50%, -50%)
+    translate(-140px, 80px)
+    rotate(-8deg)
+    scale(0.86);
+
+  opacity: 0;
+}
+
+
+.to-reflection
+.scripture-stack-layer {
+  z-index: 5;
+
+  transform:
+    translate(-50%, -50%)
+    translate(140px, 80px)
+    rotate(8deg)
+    scale(0.86);
+
+  opacity: 0;
+}
+
+
+.to-reflection
+.reflection-stack-layer {
+  z-index: 6;
+
+  transform:
+    translate(-50%, -50%)
+    translate(0, 0)
+    rotate(0deg)
+    scale(1);
+
+  opacity: 1;
+}
+
+
+/* ========================================
+   STEP 3
+
+   Again, exactly matches animation end.
+======================================== */
+
+.stack-step-3
+.message-stack-layer {
+  z-index: 1;
+
+  transform:
+    translate(-50%, -50%)
+    translate(-140px, 80px)
+    rotate(-8deg)
+    scale(0.86);
+
+  opacity: 0;
+}
+
+
+.stack-step-3
+.scripture-stack-layer {
+  z-index: 1;
+
+  transform:
+    translate(-50%, -50%)
+    translate(140px, 80px)
+    rotate(8deg)
+    scale(0.86);
+
+  opacity: 0;
+}
+
+
+.stack-step-3
+.reflection-stack-layer {
+  z-index: 5;
+
+  transform:
+    translate(-50%, -50%)
+    translate(0, 0)
+    rotate(0deg)
+    scale(1);
+
+  opacity: 1;
+}
+
+
+/* ========================================
+   ACTIVE CARD FOR LATER SECTIONS
+======================================== */
+
+.active-card-layer {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  transform:
+    translate(-50%, -50%);
+
+  z-index: 5;
 }
 
 
@@ -166,7 +440,8 @@
   .letter-navigation {
     bottom: 16px;
 
-    width: calc(100% - 32px);
+    width:
+      calc(100% - 32px);
 
     justify-content: center;
   }
@@ -186,51 +461,83 @@
     font-size: 0.85rem;
   }
 
+
+  .stack-step-1
+  .scripture-stack-layer {
+    transform:
+      translate(-50%, -50%)
+      translate(28px, -24px)
+      rotate(2deg)
+      scale(0.96);
+  }
+
+
+  .stack-step-1
+  .reflection-stack-layer {
+    transform:
+      translate(-50%, -50%)
+      translate(-24px, -40px)
+      rotate(-3deg)
+      scale(0.93);
+  }
+
+
+  .to-scripture
+  .message-stack-layer,
+  .stack-step-2
+  .message-stack-layer {
+    transform:
+      translate(-50%, -50%)
+      translate(-75px, 45px)
+      rotate(-6deg)
+      scale(0.9);
+
+    opacity: 0;
+  }
+
+
+  .to-scripture
+  .reflection-stack-layer,
+  .stack-step-2
+  .reflection-stack-layer {
+    transform:
+      translate(-50%, -50%)
+      translate(-28px, -24px)
+      rotate(-2deg)
+      scale(0.96);
+  }
+
+
+  .to-reflection
+  .scripture-stack-layer,
+  .stack-step-3
+  .scripture-stack-layer {
+    transform:
+      translate(-50%, -50%)
+      translate(75px, 45px)
+      rotate(6deg)
+      scale(0.9);
+
+    opacity: 0;
+  }
+
 }
 
 
 /* ========================================
-   VERY SMALL PHONES
-======================================== */
-
-@media (max-width: 380px) {
-
-  .letter-navigation {
-    width: calc(100% - 20px);
-  }
-
-
-  .letter-navigation button {
-    padding: 9px 14px;
-
-    font-size: 0.9rem;
-  }
-
-
-  .step-indicator {
-    right: 10px;
-  }
-
-}
-
-
-/* ========================================
-   REDUCED MOTION ACCESSIBILITY
+   REDUCED MOTION
 ======================================== */
 
 @media (prefers-reduced-motion: reduce) {
 
-  .letter-screen {
-    animation: none;
-  }
-
-
-  .progress-bar-fill {
+  .message-stack-layer,
+  .scripture-stack-layer,
+  .reflection-stack-layer {
     transition: none;
   }
 
 
-  .letter-navigation button {
+  .progress-bar-fill {
     transition: none;
   }
 

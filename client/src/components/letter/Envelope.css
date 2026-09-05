@@ -28,6 +28,9 @@
       #f8ecd6 55%,
       #efdfc3 100%
     );
+
+  transition:
+    background-color 0.7s ease;
 }
 
 
@@ -52,7 +55,7 @@
 
   filter:
     drop-shadow(
-      0 25px 22px rgba(70, 50, 30, 0.20)
+      0 25px 22px rgba(70, 50, 30, 0.2)
     );
 
   animation:
@@ -61,7 +64,7 @@
 
 
 /* =====================================================
-   FLOATING / SLANT
+   FLOATING + SLANT
 ===================================================== */
 
 @keyframes envelopeFloat {
@@ -96,7 +99,7 @@
 
 
 /* =====================================================
-   OPENING POSITION
+   OPEN POSITION
 ===================================================== */
 
 .envelope.open {
@@ -121,7 +124,7 @@
 
 
 /* =====================================================
-   BACK / BASE
+   ENVELOPE BACK
 ===================================================== */
 
 .envelope-back {
@@ -139,6 +142,10 @@
     );
 
   z-index: 1;
+
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease;
 }
 
 
@@ -155,9 +162,14 @@
   left: 50%;
   top: 20%;
 
+  /*
+    Start deep enough inside that it
+    doesn't appear underneath.
+  */
   transform:
     translateX(-50%)
-    translateY(42%);
+    translateY(42%)
+    scale(1);
 
   opacity: 0;
 
@@ -177,17 +189,28 @@
 
   overflow: hidden;
 
+  /*
+    First transition:
+    slide paper out.
+  */
   transition:
-    transform 1s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1s cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    ),
     opacity 0.22s ease;
 
   transition-delay:
-    0.58s,
+    0.55s,
     0.5s;
+
+  transform-origin: center center;
 }
 
 
-/* subtle paper texture */
+/* Paper texture */
 
 .letter-paper::after {
   content: "";
@@ -198,7 +221,7 @@
 
   pointer-events: none;
 
-  opacity: 0.12;
+  opacity: 0.1;
 
   background-image:
     repeating-linear-gradient(
@@ -270,15 +293,73 @@
 
 
 /* =====================================================
-   PAPER OPEN ANIMATION
+   PAPER SLIDES OUT
 ===================================================== */
 
 .envelope.open .letter-paper {
   transform:
     translateX(-50%)
-    translateY(-68%);
+    translateY(-68%)
+    scale(1);
 
   opacity: 1;
+}
+
+
+/* =====================================================
+   PAPER ZOOMS TOWARD VIEWER
+===================================================== */
+
+.envelope.zooming .letter-paper {
+  /*
+    Paper comes toward the viewer
+    after it has already slid out.
+  */
+
+  transform:
+    translateX(-50%)
+    translateY(-25%)
+    scale(2.8);
+
+  opacity: 1;
+
+  z-index: 50;
+
+  transition:
+    transform 1s cubic-bezier(
+      0.16,
+      1,
+      0.3,
+      1
+    ),
+    box-shadow 1s ease;
+
+  transition-delay: 0s;
+
+  box-shadow:
+    0 20px 60px
+    rgba(60, 43, 28, 0.18);
+}
+
+
+/* Make the paper contents softly disappear
+   during the zoom so the next screen can
+   introduce the real message cleanly. */
+
+.envelope.zooming .letter-paper-content {
+  animation:
+    paperContentFade 0.5s ease forwards;
+}
+
+
+@keyframes paperContentFade {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
 }
 
 
@@ -318,11 +399,20 @@
   z-index: 6;
 
   transition:
-    transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    transform 0.8s
+    cubic-bezier(
+      0.4,
+      0,
+      0.2,
+      1
+    ),
+    opacity 0.45s ease;
 
   transition-delay: 0.12s;
 }
 
+
+/* Flap opens */
 
 .envelope.open .envelope-flap {
   transform:
@@ -348,6 +438,10 @@
   z-index: 4;
 
   pointer-events: none;
+
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease;
 }
 
 
@@ -456,7 +550,6 @@
   border-radius: 50%;
 
   display: flex;
-
   align-items: center;
   justify-content: center;
 
@@ -480,8 +573,8 @@
   z-index: 8;
 
   box-shadow:
-    0 7px 14px rgba(90, 40, 50, 0.30),
-    inset 0 3px 5px rgba(255, 255, 255, 0.20);
+    0 7px 14px rgba(90, 40, 50, 0.3),
+    inset 0 3px 5px rgba(255, 255, 255, 0.2);
 
   transition:
     transform 0.32s ease,
@@ -489,12 +582,31 @@
 }
 
 
+/* Seal disappears */
+
 .envelope.open .envelope-seal {
   transform:
     translate(-50%, -50%)
     scale(0);
 
   opacity: 0;
+}
+
+
+/* =====================================================
+   ENVELOPE FADES WHEN PAPER ZOOMS
+===================================================== */
+
+.envelope.zooming .envelope-back,
+.envelope.zooming .envelope-front,
+.envelope.zooming .envelope-flap,
+.envelope.zooming .envelope-seal {
+  opacity: 0;
+
+  transform:
+    scale(0.96);
+
+  pointer-events: none;
 }
 
 
@@ -574,7 +686,8 @@
   cursor: pointer;
 
   box-shadow:
-    0 7px 14px rgba(55, 65, 48, 0.20);
+    0 7px 14px
+    rgba(55, 65, 48, 0.2);
 
   transition:
     transform 0.25s ease,
@@ -588,13 +701,13 @@
     scale(1.03);
 
   box-shadow:
-    0 11px 20px rgba(55, 65, 48, 0.25);
+    0 11px 20px
+    rgba(55, 65, 48, 0.25);
 }
 
 
 .open-letter-button:active:not(:disabled) {
-  transform:
-    scale(0.97);
+  transform: scale(0.97);
 }
 
 
@@ -604,7 +717,7 @@
 
 
 /* =====================================================
-   DECORATIONS
+   BACKGROUND DECORATIONS
 ===================================================== */
 
 .envelope-decoration {
@@ -615,6 +728,9 @@
   opacity: 0.5;
 
   color: #b88d52;
+
+  transition:
+    opacity 0.5s ease;
 }
 
 
@@ -625,7 +741,8 @@
   font-size: 1.5rem;
 
   animation:
-    decorationFloat 4s ease-in-out infinite;
+    decorationFloat
+    4s ease-in-out infinite;
 }
 
 
@@ -638,7 +755,8 @@
   color: #b45e70;
 
   animation:
-    decorationFloat 5s ease-in-out infinite reverse;
+    decorationFloat
+    5s ease-in-out infinite reverse;
 }
 
 
@@ -649,7 +767,8 @@
   font-size: 1rem;
 
   animation:
-    decorationFloat 3.5s ease-in-out infinite;
+    decorationFloat
+    3.5s ease-in-out infinite;
 }
 
 
@@ -669,6 +788,23 @@
 }
 
 
+/* Decorations disappear when zoom begins */
+
+.screen-zooming .envelope-decoration {
+  opacity: 0;
+}
+
+
+/* =====================================================
+   BACKGROUND BRIGHTENS DURING ZOOM
+===================================================== */
+
+.envelope-screen.screen-zooming {
+  background:
+    #fffaf0;
+}
+
+
 /* =====================================================
    TABLET
 ===================================================== */
@@ -680,6 +816,14 @@
         82vw,
         600px
       );
+  }
+
+
+  .envelope.zooming .letter-paper {
+    transform:
+      translateX(-50%)
+      translateY(-20%)
+      scale(2.4);
   }
 }
 
@@ -741,11 +885,19 @@
   .decoration-two {
     right: 6%;
   }
+
+
+  .envelope.zooming .letter-paper {
+    transform:
+      translateX(-50%)
+      translateY(-15%)
+      scale(2.1);
+  }
 }
 
 
 /* =====================================================
-   SMALL MOBILE
+   SMALL PHONES
 ===================================================== */
 
 @media (max-width: 380px) {
@@ -756,6 +908,14 @@
 
   .letter-paper-content {
     padding: 15px;
+  }
+
+
+  .envelope.zooming .letter-paper {
+    transform:
+      translateX(-50%)
+      translateY(-10%)
+      scale(2);
   }
 }
 
@@ -774,7 +934,9 @@
   .envelope-flap,
   .letter-paper,
   .envelope-seal,
-  .envelope-details {
+  .envelope-details,
+  .envelope-front,
+  .envelope-back {
     transition-duration: 0.01ms;
   }
 }

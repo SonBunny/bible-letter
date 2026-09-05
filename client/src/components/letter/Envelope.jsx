@@ -3,23 +3,40 @@ import "./Envelope.css"
 
 function Envelope({ recipientName, onOpen }) {
   const [isOpen, setIsOpen] = useState(false)
+  const [isZooming, setIsZooming] = useState(false)
 
   const handleOpen = () => {
+    // Prevent double-clicking the envelope
     if (isOpen) {
       return
     }
 
+    // STEP 1:
+    // Open the envelope
     setIsOpen(true)
 
-    // Wait until the envelope opening animation finishes
-    // before moving to the next Bible Letter section.
+    // STEP 2:
+    // After the paper has started sliding out,
+    // begin zooming the paper toward the viewer.
+    setTimeout(() => {
+      setIsZooming(true)
+    }, 1200)
+
+    // STEP 3:
+    // After the zoom animation finishes,
+    // move ViewLetter to the Personal Message screen.
     setTimeout(() => {
       onOpen()
-    }, 2200)
+    }, 2300)
   }
 
   return (
-    <div className="envelope-screen">
+    <div
+      className={`envelope-screen ${
+        isZooming ? "screen-zooming" : ""
+      }`}
+    >
+      {/* Cute background decorations */}
       <span className="envelope-decoration decoration-one">
         ✦
       </span>
@@ -32,12 +49,19 @@ function Envelope({ recipientName, onOpen }) {
         ✦
       </span>
 
+      {/* Main envelope */}
       <div
-        className={`envelope ${isOpen ? "open" : ""}`}
+        className={`
+          envelope
+          ${isOpen ? "open" : ""}
+          ${isZooming ? "zooming" : ""}
+        `}
         onClick={handleOpen}
       >
+        {/* Back of envelope */}
         <div className="envelope-back"></div>
 
+        {/* Letter paper */}
         <div className="letter-paper">
           <div className="letter-paper-content">
             <span className="letter-small-text">
@@ -54,20 +78,30 @@ function Envelope({ recipientName, onOpen }) {
           </div>
         </div>
 
+        {/* Envelope flap */}
         <div className="envelope-flap"></div>
 
+        {/* Front folds */}
         <div className="envelope-front">
           <div className="envelope-left-fold"></div>
+
           <div className="envelope-right-fold"></div>
+
           <div className="envelope-bottom-fold"></div>
         </div>
 
+        {/* Wax seal */}
         <div className="envelope-seal">
           ♡
         </div>
       </div>
 
-      <div className={`envelope-details ${isOpen ? "opening" : ""}`}>
+      {/* Recipient + Open button */}
+      <div
+        className={`envelope-details ${
+          isOpen ? "opening" : ""
+        }`}
+      >
         <p className="envelope-recipient">
           For {recipientName}
         </p>

@@ -1,0 +1,369 @@
+.hero-section {
+  position: relative;
+
+  width: 100%;
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding:
+    130px
+    24px
+    80px;
+
+  overflow: hidden;
+}
+
+
+.hero-content {
+  position: relative;
+
+  z-index: 10;
+
+  width: 100%;
+  max-width: 900px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  text-align: center;
+}
+
+
+.hero-kicker {
+  margin:
+    0
+    0
+    20px;
+
+  font-family:
+    Arial,
+    sans-serif;
+
+  font-size:
+    clamp(
+      0.6rem,
+      1vw,
+      0.75rem
+    );
+
+  letter-spacing: 5px;
+
+  color: #766757;
+
+  opacity: 0;
+
+  animation:
+    heroFadeIn
+    0.7s
+    ease
+    forwards;
+}
+
+
+.hero-content h1 {
+  margin: 0;
+
+  color: #40513a;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size:
+    clamp(
+      3.2rem,
+      8vw,
+      6.5rem
+    );
+
+  font-weight: 500;
+
+  line-height: 1;
+
+  opacity: 0;
+
+  animation:
+    heroFadeIn
+    0.8s
+    0.1s
+    ease
+    forwards;
+}
+
+
+.hero-heart {
+  display: inline-block;
+
+  margin-left: 12px;
+
+  color: #a95661;
+
+  font-size: 0.65em;
+
+  transform:
+    rotate(-10deg);
+}
+
+
+.hero-description {
+  margin:
+    28px
+    0
+    24px;
+
+  font-size:
+    clamp(
+      1.1rem,
+      2.3vw,
+      1.7rem
+    );
+
+  line-height: 1.5;
+
+  opacity: 0;
+
+  animation:
+    heroFadeIn
+    0.8s
+    0.2s
+    ease
+    forwards;
+}
+
+
+.hero-divider {
+  display: flex;
+  align-items: center;
+
+  gap: 14px;
+
+  margin-bottom: 32px;
+
+  color: #a95661;
+}
+
+
+.hero-divider span:first-child,
+.hero-divider span:last-child {
+  width: 60px;
+  height: 1px;
+
+  background:
+    rgba(76, 64, 53, 0.35);
+}
+
+
+.hero-create-button {
+  padding:
+    15px
+    28px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 16px;
+
+  border: none;
+
+  border-radius: 999px;
+
+  background: #40513a;
+
+  color: #fffaf0;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 1rem;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 8px 18px
+    rgba(48, 64, 43, 0.18);
+
+  opacity: 0;
+
+  animation:
+    heroFadeIn
+    0.8s
+    0.3s
+    ease
+    forwards;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+.hero-create-button:hover {
+  transform:
+    translateY(-3px);
+
+  box-shadow:
+    0 12px 22px
+    rgba(48, 64, 43, 0.24);
+}
+
+
+.hero-create-button span {
+  transition:
+    transform
+    0.2s
+    ease;
+}
+
+
+.hero-create-button:hover span {
+  transform:
+    translateX(4px);
+}
+
+
+/* Decorations */
+
+.hero-decoration {
+  position: absolute;
+
+  pointer-events: none;
+
+  opacity: 0.55;
+
+  animation:
+    heroFloat
+    4s
+    ease-in-out
+    infinite;
+}
+
+
+.hero-sparkle-one {
+  top: 28%;
+  left: 15%;
+
+  color: #c39b58;
+
+  font-size: 1.4rem;
+}
+
+
+.hero-sparkle-two {
+  right: 17%;
+  bottom: 20%;
+
+  color: #c39b58;
+
+  animation-delay: 1s;
+}
+
+
+.hero-floating-heart {
+  top: 35%;
+  right: 15%;
+
+  color: #ad5c68;
+
+  font-size: 1.2rem;
+
+  animation-delay: 0.6s;
+}
+
+
+/* Animations */
+
+@keyframes heroFadeIn {
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0);
+  }
+}
+
+
+@keyframes heroFloat {
+  0%,
+  100% {
+    transform:
+      translateY(0);
+  }
+
+  50% {
+    transform:
+      translateY(-10px);
+  }
+}
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+  .hero-section {
+    min-height: 100svh;
+
+    padding:
+      110px
+      20px
+      70px;
+  }
+
+
+  .hero-kicker {
+    letter-spacing: 3px;
+  }
+
+
+  .hero-content h1 {
+    font-size:
+      clamp(
+        2.8rem,
+        14vw,
+        4.5rem
+      );
+  }
+
+
+  .hero-description {
+    font-size: 1.05rem;
+  }
+
+
+  .hero-divider span:first-child,
+  .hero-divider span:last-child {
+    width: 45px;
+  }
+
+
+  .hero-create-button {
+    width: min(320px, 90%);
+
+    justify-content: center;
+  }
+
+
+  .hero-sparkle-one {
+    left: 7%;
+  }
+
+
+  .hero-floating-heart {
+    right: 7%;
+  }
+
+}

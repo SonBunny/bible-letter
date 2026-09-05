@@ -1,0 +1,253 @@
+/* ========================================
+   LETTER FORM PAPER
+======================================== */
+
+.letter-form-section {
+  width: min(760px, 90vw);
+  height: min(560px, calc(100vh - 170px));
+
+  position: relative;
+  flex-shrink: 0;
+
+  padding: 60px 70px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  border-radius: 10px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #fffef9,
+      #fff8ea
+    );
+
+  box-shadow:
+    0 25px 60px
+    rgba(77, 55, 35, 0.16);
+
+  transform: rotate(-0.4deg);
+
+  overflow: hidden;
+
+  animation:
+    letterSectionEnter
+    0.45s
+    ease
+    both;
+}
+
+
+/* ========================================
+   INNER PAPER BORDER
+======================================== */
+
+.letter-form-section::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 12px;
+
+  border:
+    1px solid
+    rgba(130, 100, 70, 0.14);
+
+  border-radius: 7px;
+
+  pointer-events: none;
+}
+
+
+/* ========================================
+   SECTION HEADING
+======================================== */
+
+.letter-form-section-heading {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 20px;
+
+  margin-bottom: 34px;
+
+  position: relative;
+
+  z-index: 2;
+}
+
+
+.letter-form-section-number {
+  width: 40px;
+  height: 40px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #40513a;
+
+  color: #fffaf0;
+
+  font-family:
+    Arial,
+    sans-serif;
+
+  font-size: 0.75rem;
+}
+
+
+.letter-form-section-heading h2 {
+  margin:
+    0
+    0
+    8px;
+
+  color: #40513a;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size:
+    clamp(
+      2rem,
+      4vw,
+      3rem
+    );
+
+  font-weight: 500;
+}
+
+
+.letter-form-section-heading p {
+  max-width: 520px;
+
+  margin: 0;
+
+  color: #78695a;
+
+  font-size: 0.95rem;
+
+  line-height: 1.6;
+}
+
+
+/* ========================================
+   SECTION CONTENT
+======================================== */
+
+.letter-form-section-content {
+  width: 100%;
+
+  position: relative;
+
+  z-index: 2;
+}
+
+
+/* ========================================
+   ENTER ANIMATION
+======================================== */
+
+@keyframes letterSectionEnter {
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(18px)
+      scale(0.98)
+      rotate(-0.4deg);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1)
+      rotate(-0.4deg);
+  }
+}
+
+
+/* ========================================
+   TABLET
+======================================== */
+
+@media (max-width: 900px) {
+
+  .letter-form-section {
+    width: min(760px, 90vw);
+
+    padding:
+      50px
+      45px;
+  }
+
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 600px) {
+
+  .letter-form-section {
+    width: 94vw;
+
+    height:
+      calc(100vh - 145px);
+
+    padding:
+      38px
+      24px;
+
+    transform: none;
+  }
+
+
+  .letter-form-section-heading {
+    gap: 14px;
+
+    margin-bottom: 28px;
+  }
+
+
+  .letter-form-section-number {
+    width: 34px;
+    height: 34px;
+  }
+
+
+  .letter-form-section-heading h2 {
+    font-size: 1.8rem;
+  }
+
+
+  .letter-form-section-heading p {
+    font-size: 0.9rem;
+  }
+
+}
+
+
+/* ========================================
+   ACCESSIBILITY
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .letter-form-section {
+    animation: none;
+  }
+
+}

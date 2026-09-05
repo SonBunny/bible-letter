@@ -1,0 +1,357 @@
+.final-cta {
+  position: relative;
+
+  width: 100%;
+  min-height: 600px;
+
+  padding:
+    90px
+    clamp(20px, 8vw, 140px);
+
+  display: grid;
+
+  grid-template-columns:
+    0.8fr
+    1.2fr
+    1fr;
+
+  align-items: center;
+
+  gap: 60px;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      145deg,
+      #ead5b4,
+      #f5e5cb
+    );
+}
+
+
+/* ========================================
+   LEFT NOTE
+======================================== */
+
+.final-cta-note {
+  text-align: center;
+
+  transform:
+    rotate(-5deg);
+}
+
+
+.final-cta-note p {
+  margin: 0;
+
+  font-size:
+    clamp(
+      1.4rem,
+      2.5vw,
+      2.2rem
+    );
+
+  font-style: italic;
+
+  line-height: 1.4;
+
+  color: #4c4035;
+}
+
+
+.final-cta-note span {
+  display: block;
+
+  margin-top: 15px;
+
+  color: #a95661;
+
+  font-size: 2rem;
+}
+
+
+/* ========================================
+   ENVELOPE
+======================================== */
+
+.final-cta-envelope {
+  position: relative;
+
+  width: 100%;
+  max-width: 440px;
+
+  aspect-ratio: 1.6 / 1;
+
+  margin: 0 auto;
+
+  transform:
+    rotate(-2deg);
+
+  filter:
+    drop-shadow(
+      0 18px 18px
+      rgba(76, 53, 32, 0.18)
+    );
+}
+
+
+.final-cta-envelope-back {
+  position: absolute;
+
+  inset: 0;
+
+  border-radius: 7px;
+
+  background:
+    #e5c28e;
+}
+
+
+.final-cta-envelope-flap {
+  position: absolute;
+
+  z-index: 2;
+
+  inset: 0;
+
+  background:
+    #efd3a8;
+
+  clip-path:
+    polygon(
+      0 0,
+      50% 58%,
+      100% 0
+    );
+}
+
+
+.final-cta-envelope-front {
+  position: absolute;
+
+  z-index: 3;
+
+  inset: 0;
+
+  border-radius:
+    0
+    0
+    7px
+    7px;
+
+  background:
+    #e9c998;
+
+  clip-path:
+    polygon(
+      0 20%,
+      50% 65%,
+      100% 20%,
+      100% 100%,
+      0 100%
+    );
+}
+
+
+.final-cta-envelope-heart {
+  position: absolute;
+
+  z-index: 5;
+
+  left: 50%;
+  top: 57%;
+
+  transform:
+    translate(-50%, -50%);
+
+  color: #a95661;
+
+  font-size: 2.2rem;
+}
+
+
+/* ========================================
+   CONTENT
+======================================== */
+
+.final-cta-content {
+  display: flex;
+  flex-direction: column;
+
+  align-items: flex-start;
+}
+
+
+.final-cta-kicker {
+  margin:
+    0
+    0
+    15px;
+
+  font-family:
+    Arial,
+    sans-serif;
+
+  font-size: 0.6rem;
+
+  letter-spacing: 4px;
+
+  color: #91675d;
+}
+
+
+.final-cta-content h2 {
+  margin:
+    0
+    0
+    30px;
+
+  color: #4a4035;
+
+  font-size:
+    clamp(
+      2rem,
+      4vw,
+      3.5rem
+    );
+
+  font-weight: 500;
+
+  line-height: 1.15;
+}
+
+
+.final-cta-content button {
+  padding:
+    15px
+    28px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 16px;
+
+  border: none;
+
+  border-radius: 999px;
+
+  background:
+    #40513a;
+
+  color:
+    #fffaf0;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 1rem;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 8px 18px
+    rgba(48, 64, 43, 0.18);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+.final-cta-content button:hover {
+  transform:
+    translateY(-3px);
+
+  box-shadow:
+    0 12px 22px
+    rgba(48, 64, 43, 0.24);
+}
+
+
+.final-cta-content button span {
+  transition:
+    transform 0.2s ease;
+}
+
+
+.final-cta-content button:hover span {
+  transform:
+    translateX(4px);
+}
+
+
+.final-cta-footer {
+  margin-top: 30px;
+
+  font-family:
+    Arial,
+    sans-serif;
+
+  font-size: 0.6rem;
+
+  letter-spacing: 5px;
+
+  color: #7b6958;
+}
+
+
+/* ========================================
+   TABLET
+======================================== */
+
+@media (max-width: 900px) {
+
+  .final-cta {
+    grid-template-columns:
+      1fr
+      1fr;
+  }
+
+
+  .final-cta-note {
+    display: none;
+  }
+
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 600px) {
+
+  .final-cta {
+    min-height: auto;
+
+    padding:
+      80px
+      20px;
+
+    grid-template-columns:
+      1fr;
+
+    gap: 50px;
+
+    text-align: center;
+  }
+
+
+  .final-cta-envelope {
+    max-width: 330px;
+  }
+
+
+  .final-cta-content {
+    align-items: center;
+  }
+
+
+  .final-cta-content h2 br {
+    display: none;
+  }
+
+}

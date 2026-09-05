@@ -1,17 +1,23 @@
-import { useNavigate } from "react-router-dom"
+import Navbar from "../components/home/Navbar"
+import HeroSection from "../components/home/HeroSection"
+import HowItWorks from "../components/home/HowItWorks"
+import FinalCTA from "../components/home/FinalCTA"
+
+import "./Home.css"
 
 function Home() {
-  const navigate = useNavigate()
-
   return (
-    <div>
-      <h1>Bible Letter Gift</h1>
-      <p>Create a meaningful Bible letter for someone.</p>
+    <main className="home-page">
 
-      <button onClick={() => navigate("/create")}>
-        Create a Letter
-      </button>
-    </div>
+      <Navbar />
+
+      <HeroSection />
+
+      <HowItWorks />
+
+      <FinalCTA />
+
+    </main>
   )
 }
 

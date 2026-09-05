@@ -1,8 +1,5 @@
-
 const Letter = require("../models/Letter")
 const mongoose = require("mongoose")
-
-
 
 
 const createLetter = async (req, res) => {
@@ -13,7 +10,8 @@ const createLetter = async (req, res) => {
       bibleVerse,
       reflection,
       closingMessage,
-      spotifyUrl
+      spotifyUrl,
+      backgroundMusicId
     } = req.body
 
     if (
@@ -34,10 +32,12 @@ const createLetter = async (req, res) => {
       bibleVerse,
       reflection,
       closingMessage,
-      spotifyUrl
+      spotifyUrl,
+      backgroundMusicId
     })
 
     res.status(201).json(letter)
+
   } catch (error) {
     console.error(error)
 
@@ -46,6 +46,7 @@ const createLetter = async (req, res) => {
     })
   }
 }
+
 
 const getLetterById = async (req, res) => {
   try {
@@ -66,6 +67,7 @@ const getLetterById = async (req, res) => {
     }
 
     res.json(letter)
+
   } catch (error) {
     console.error(error)
 
@@ -74,6 +76,7 @@ const getLetterById = async (req, res) => {
     })
   }
 }
+
 
 module.exports = {
   createLetter,

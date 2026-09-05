@@ -29,7 +29,11 @@ const letterSchema = new mongoose.Schema({
   spotifyUrl: {
   type: String,
   required: false
-  }
+  },
+  backgroundMusicId: {
+  type: String,
+  required: false
+}
 }, {
   timestamps: true
 })
